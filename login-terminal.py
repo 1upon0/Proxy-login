@@ -1,4 +1,10 @@
 #!/usr/bin/env python
+
+import ssl
+
+if hasattr(ssl,'_create_unverified_context'):
+    ssl._create_default_https_context = ssl._create_unverified_context
+
 import sys
 import signal
 import time
@@ -126,9 +132,9 @@ if __name__=="__main__":
 	if n==1:
 		print "\n\nUsage: python login_terminal.py username password proxy_category\n\n"
 	else:
-		uname = sys.argv[1] if n>1 else 'yourUsernameHere'
-		passwd = sys.argv[2] if n>2 else 'yourPasswordHere'
-		proxycat = sys.argv[3] if n>3 else 'dual'
+		uname = sys.argv[1] if n>1 else 'entry'
+		passwd = sys.argv[2] if n>2 else 'password'
+		proxycat = sys.argv[3] if n>3 else 'phd'
 		user = Proxy(username=uname, password=passwd, proxy_cat=proxycat)
 		login_status = user.login()[STATUS]
 		print '\nLogin',login_status
